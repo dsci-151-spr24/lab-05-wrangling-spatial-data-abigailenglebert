@@ -1,8 +1,8 @@
 ---
 title: "Lab 05 - La Quinta is Spanish for next to Denny's, Pt. 2"
 subtitle: "Wrangling spatial data"
+author: "Abby Englebert"
 output: 
-authory: "Abby Englebert"
   tufte::tufte_html:
     tufte_variant: "envisioned"
     highlight: pygments
@@ -64,6 +64,8 @@ You can also find this information [here](https://rstudio-education.github.io/ds
 
 1.  Filter the Denny's dataframe for Alaska (AK) and save the result as `dn_ak`. How many Denny's locations are there in Alaska?
 
+***There are 3 Denny's locations in Alaska.***
+
 ```{r}
 dn_ak <- dennys %>%
   filter(state == "AK")
@@ -71,6 +73,8 @@ nrow(dn_ak)
 ```
 
 2.  Filter the La Quinta dataframe for Alaska (AK) and save the result as `lq_ak`. How many La Quinta locations are there in Alaska?
+
+***There are 2 La Quinta's located in Alaska.***
 
 ```{r}
 lq_ak <- laquinta %>%
@@ -137,8 +141,15 @@ Let's join the data on Denny's and La Quinta locations in Alaska, and take a loo
 dn_lq_ak <- full_join(dn_ak, lq_ak, by = "state")
 dn_lq_ak
 ```
+```{r}
+nrow(dn_lq_ak)
 
+names(dn_lq_ak)
+```
 4.  How many observations are in the joined `dn_lq_ak` data frame? What are the names of the variables in this data frame.
+
+***There are `r nrow(dn_lq_ak)` observations. The names of the variables in this data frame are `r names(dn_lq_ak)`.***
+
 
 `.x` in the variable names means the variable comes from the `x` data frame (the first argument in the `full_join` call, i.e. `dn_ak`), and `.y` means the variable comes from the `y` data frame.
 These varibles are renamed to include `.x` and `.y` because the two data frames have the same variables and it's not possible to have two variables in a data frame with the exact same name.
